@@ -5,7 +5,21 @@ return {
     vim.g.vimtex_view_method = 'sioyek'            -- Sioyek PDF viewer for academic documents
     -- Note: Not setting vimtex_view_sioyek_options allows VimTeX to handle window management
     -- It will open new windows when needed but reuse for the same document
-    vim.g.vimtex_context_pdf_viewer = 'okular'     -- External PDF viewer for the Vimtex menu
+    vim.g.vimtex_context_pdf_viewer = 'skim'     -- External PDF viewer for the Vimtex menu
+
+    vim.g.vimtex_compiler_method = 'latexmk'
+    vim.g.vimtex_compiler_latexmk = {
+      build_dir = '',           -- can be left empty or specify "build"
+      callback = 1,
+      continuous = 1,           -- <--- enables live compilation
+      executable = 'latexmk',
+      options = {
+        '-verbose',
+        '-file-line-error',
+        '-synctex=1',
+        '-interaction=nonstopmode',
+      },
+    }
 
     -- Formatting settings
     -- vim.g.vimtex_format_enabled = true             -- Enable formatting with latexindent
@@ -26,7 +40,8 @@ return {
     }
 
     -- Other settings
-    vim.g.vimtex_mappings_enabled = false          -- Disable default mappings
+    vim.g.vimtex_mappings_enabled = true           -- Disable default mappings
     vim.g.tex_flavor = 'latex'                     -- Set file type for TeX files
   end,
 }
+

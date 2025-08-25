@@ -167,6 +167,12 @@ return {
     local snacks = require("snacks")
     snacks.setup(opts)
     -- Set vim.ui.input to use Snacks.input
-    vim.ui.input = snacks.input
+    -- vim.ui.input = Snacks.input
+    if snacks.input then:
+      vim.ui.input = snacks.input
+    end 
+    if snacks.select then:
+      vim.ui.select = snacks.select 
+    end
   end,
 }
