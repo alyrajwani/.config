@@ -18,6 +18,11 @@ fish_config prompt choose scales
 #     string join '' -- $PWD '>'
 # end
 
+function fish_greeting
+  fish_logo
+  fortune
+end
+
 # runs zoxide if installed
 if type -q zoxide
 zoxide init fish --cmd cd | source

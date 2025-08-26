@@ -2,7 +2,9 @@ return {
   "lervag/vimtex",
   init = function()
     -- Viewer settings
-    vim.g.vimtex_view_method = 'sioyek'            -- Sioyek PDF viewer for academic documents
+    vim.g.vimtex_view_general_viewer = 'zathura'
+    vim.g.vimtex_view_method = 'general'
+    -- vim.g.vimtex_view_method = 'zathura'            -- Sioyek PDF viewer for academic documents
     -- Note: Not setting vimtex_view_sioyek_options allows VimTeX to handle window management
     -- It will open new windows when needed but reuse for the same document
     vim.g.vimtex_context_pdf_viewer = 'skim'     -- External PDF viewer for the Vimtex menu
@@ -40,8 +42,20 @@ return {
     }
 
     -- Other settings
-    vim.g.vimtex_mappings_enabled = true           -- Disable default mappings
+    vim.g.vimtex_mappings_enabled = false          -- Disable default mappings
     vim.g.tex_flavor = 'latex'                     -- Set file type for TeX files
+
+    -- Conceal settings 
+    vim.opt.conceallevel = 2
+    vim.g.tex_conceal = "abdmg"
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "tex",
+      callback = function()
+        vim.opt_local.conceallevel = 2
+        vim.opt_local.concealcursor = "nc"        -- conceal in normal + command mode
+      end,
+    })
+
   end,
 }
 
